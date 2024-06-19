@@ -2,7 +2,7 @@ import React from "react";
 import ContainerBox from "../components/UI/Container";
 import Header from "../components/admin/Header";
 
-export const SettingsPage: React.FC = () => {
+const SettingsPage: React.FC = () => {
   return (
     <>
       <Header isNotSearch={true} />
@@ -10,3 +10,5 @@ export const SettingsPage: React.FC = () => {
     </>
   );
 };
+
+export default SettingsPage;

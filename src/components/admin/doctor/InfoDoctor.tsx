@@ -3,7 +3,7 @@ import { styled } from "styled-components";
 import CloseIcon from "@mui/icons-material/Close";
 import ModalMenu from "../../UI/function/Modal";
 import { getOneDoctorReq } from "../../../store/doctorsSlice/service";
-import { DoctorsState } from "../../../store/doctorsSlice/types";
+import { InfoDoctorsState } from "../../../store/doctorsSlice/types";
 
 interface InfoDoctorProps {
   onClose: (e: string) => void;
@@ -14,7 +14,7 @@ export const InfoDoctor: React.FC<InfoDoctorProps> = ({
   onClose,
   doctorId,
 }) => {
-  const [doctorData, setDoctorData] = useState<DoctorsState | null>(null);
+  const [doctorData, setDoctorData] = useState<InfoDoctorsState | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {

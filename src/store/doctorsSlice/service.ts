@@ -5,6 +5,7 @@ import { CreateDoctorsState } from "./types";
 ///GET///
 export const getDoctorsListReq = (params: ParamsState) => {
   const { tag, genderDoc } = params;
+  console.log(tag, genderDoc);
   return axiosInstance.get(`doctor`);
 };
 

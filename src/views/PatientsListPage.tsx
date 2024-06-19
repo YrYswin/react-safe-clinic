@@ -23,10 +23,10 @@ import {
 import DeleteModal from "../components/admin/DeleteModal";
 import TableUI from "../components/UI/Table";
 import { getDoctorsList } from "../store/doctorsSlice/action";
-import { GenderEnums } from "../store/filtersSlice/types";
 import { selectDoc } from "../store/doctorsSlice/slice";
+import { GenderState } from "../utils/types";
 
-export const PatientsListPage: React.FC = () => {
+const PatientsListPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const { search, gender } = useSelector(selectFilterPatients);
   const [modal, setModal] = React.useState<string>("");
@@ -39,7 +39,7 @@ export const PatientsListPage: React.FC = () => {
 
   React.useEffect(() => {
     dispatch(getPatients({ genderPat: gender }));
-    dispatch(getDoctorsList({ tag: 0, genderDoc: GenderEnums.ALL }));
+    dispatch(getDoctorsList({ tag: 0, genderDoc: GenderState.ALL }));
   }, [update, dispatch]);
 
   function closeModal(message: string) {
@@ -113,3 +113,5 @@ export const PatientsListPage: React.FC = () => {
     </>
   );
 };
+
+export default PatientsListPage;

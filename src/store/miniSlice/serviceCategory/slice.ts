@@ -5,7 +5,7 @@ import {
   ServiceCategoryState,
   Status,
 } from "./types";
-import { RootState } from "../store";
+import { RootState } from "../../store";
 
 const initialState: ServiceCategorySliceState = {
   items: [],

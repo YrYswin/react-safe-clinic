@@ -24,6 +24,7 @@ export type DoctorsState = {
   tag: string;
   client: number;
 };
+
 export type EditDoctorsState = {
   name: string;
   email: string;
@@ -32,6 +33,19 @@ export type EditDoctorsState = {
   birthday: string;
   gender: string;
   photo: File | undefined;
+  tag: string;
+  client: number;
+};
+
+export type InfoDoctorsState = {
+  id: number;
+  name: string;
+  email: string;
+  address: string;
+  phone_number: string;
+  birthday: string;
+  gender: string;
+  photo: string | undefined;
   tag: string;
   client: number;
 };

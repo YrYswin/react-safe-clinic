@@ -1,16 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { FilterSliceState, GenderEnums } from "./types";
+import { FilterSliceState } from "./types";
+import { GenderState } from "../../utils/types";
 
 const initialState: FilterSliceState = {
   doctors: {
     search: "",
-    gender: GenderEnums.ALL,
+    gender: GenderState.ALL,
     age: "",
     tag: 0,
   },
   patients: {
     search: "",
-    gender: GenderEnums.ALL,
+    gender: GenderState.ALL,
     age: "",
   },
   services: "",

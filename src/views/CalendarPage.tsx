@@ -7,7 +7,7 @@ import WeekCalendarTable from "../components/UI/CalendarView/WeekCalendarTable";
 import MonthCalendarTable from "../components/UI/CalendarView/MonthCalendarTable";
 import DayCalendarTable from "../components/UI/CalendarView/DayCalendarTable";
 
-export const CalendarPage: React.FC = () => {
+const CalendarPage: React.FC = () => {
   const [filterState, setFilterState] = React.useState<string>("week");
   return (
     <>
@@ -26,6 +26,9 @@ export const CalendarPage: React.FC = () => {
     </>
   );
 };
+
+export default CalendarPage;
+
 const Container = styled.div`
   border-radius: 10px;
   padding: 10px;

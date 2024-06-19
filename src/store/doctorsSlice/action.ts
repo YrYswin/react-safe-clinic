@@ -1,10 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { getDoctorsListReq, postDoctorReq, patchDoctorReq } from "./service";
 import { CreateDoctorsState, DoctorsArrayState, DoctorsState } from "./types";
-import { GenderEnums } from "../filtersSlice/types";
+import { GenderState } from "../../utils/types";
 
 export type ParamsState = {
-  genderDoc: GenderEnums;
+  genderDoc: GenderState;
   tag: number;
 };
 

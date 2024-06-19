@@ -20,7 +20,7 @@ import { AddDoctor, EditDoctor, InfoDoctor } from "../components/admin/doctor";
 import DeleteModal from "../components/admin/DeleteModal";
 import TableUI from "../components/UI/Table";
 
-export const DoctorsListPage: React.FC = () => {
+const DoctorsListPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const { search, tag, gender } = useSelector(selectFilterDoctors);
   const [modal, setModal] = React.useState<string>("");
@@ -101,3 +101,5 @@ export const DoctorsListPage: React.FC = () => {
     </>
   );
 };
+
+export default DoctorsListPage;

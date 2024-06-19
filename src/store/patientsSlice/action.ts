@@ -6,7 +6,7 @@ import {
   patchPatientsReq,
 } from "./service";
 import { PatientArrayState, PatientState } from "./types";
-import { GenderState } from "../filter/slice";
+import { GenderState } from "../../utils/types";
 
 export type ParamsState = {
   genderPat: GenderState;

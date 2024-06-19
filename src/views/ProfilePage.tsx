@@ -4,10 +4,10 @@ import Header from "../components/admin/Header";
 import TextFiled from "../components/UI/function/TextFiled";
 import WorkDays from "../components/UI/function/WorkDays";
 import axios from "axios";
-import { DoctorsState } from "../store/doctorsSlice/types";
+import { InfoDoctorsState } from "../store/doctorsSlice/types";
 
-export const Profile: React.FC = () => {
-  const [item, setItem] = React.useState<DoctorsState>();
+const ProfilePage: React.FC = () => {
+  const [item, setItem] = React.useState<InfoDoctorsState>();
   const getDoctorById = async (id: number) => {
     const { data } = await axios.get(`http://192.168.1.12:8080/doctor/${id}`);
     setItem(data);
@@ -85,6 +85,9 @@ export const Profile: React.FC = () => {
     </>
   );
 };
+
+export default ProfilePage;
+
 const Container = styled("div")({
   borderRadius: "10px",
   height: "100%",

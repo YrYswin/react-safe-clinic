@@ -16,7 +16,7 @@ import TableUI from "../components/UI/Table";
 import { AddBranch, EditBranch, InfoBranch } from "../components/admin/branch";
 import DeleteModal from "../components/admin/DeleteModal";
 
-export const BranchesListPage: React.FC = () => {
+const BranchesListPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const search = useSelector(selectSearchBranches);
   console.log(search);
@@ -106,3 +106,5 @@ export const BranchesListPage: React.FC = () => {
     </>
   );
 };
+
+export default BranchesListPage

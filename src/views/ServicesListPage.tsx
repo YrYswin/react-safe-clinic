@@ -20,7 +20,7 @@ import DeleteModal from "../components/admin/DeleteModal";
 import { getServiceCategory } from "../store/miniSlice/serviceCategory/action";
 import { selectSerCat } from "../store/miniSlice/serviceCategory/slice";
 
-export const ServicesListPage: React.FC = () => {
+const ServicesListPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const [modal, setModal] = React.useState<string>("");
   const [service, setService] = React.useState<ServiceState>();
@@ -105,3 +105,5 @@ export const ServicesListPage: React.FC = () => {
     </>
   );
 };
+
+export default ServicesListPage

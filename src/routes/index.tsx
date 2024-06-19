@@ -1,18 +1,19 @@
+import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 
 import Layout from "../layout/Layout";
-import {
-  AnalyticsPage,
-  DoctorsListPage,
-  BranchesListPage,
-  PatientsListPage,
-  ServicesListPage,
-  CalendarPage,
-  NotificationPage,
-  SettingsPage,
-  Profile,
-} from "../views";
 import Auth from "../components/auth/Auth";
+
+const AnalyticsPage = React.lazy(() => import("../views/AnalyticsPage"));
+const DoctorsListPage = React.lazy(() => import("../views/DoctorsListPage"));
+const BranchesListPage = React.lazy(() => import("../views/BranchesListPage"));
+const PatientsListPage = React.lazy(() => import("../views/PatientsListPage"));
+const ServicesListPage = React.lazy(() => import("../views/ServicesListPage"));
+const CalendarPage = React.lazy(() => import("../views/CalendarPage"));
+const NotificationPage = React.lazy(() => import("../views/NotificationPage"));
+const SettingsPage = React.lazy(() => import("../views/SettingsPage"));
+const ProfilePage = React.lazy(() => import("../views/ProfilePage"));
+
 import { NavigateList } from "../utils/constant";
 
 export const router = createBrowserRouter([
@@ -26,31 +27,59 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "analytics",
-        element: <AnalyticsPage />,
+        element: (
+          <React.Suspense>
+            <AnalyticsPage />,
+          </React.Suspense>
+        ),
       },
       {
         path: "services",
-        element: <ServicesListPage />,
+        element: (
+          <React.Suspense>
+            <ServicesListPage />
+          </React.Suspense>
+        ),
       },
       {
         path: "doctors-list",
-        element: <DoctorsListPage />,
+        element: (
+          <React.Suspense>
+            <DoctorsListPage />
+          </React.Suspense>
+        ),
       },
       {
         path: "patients-list",
-        element: <PatientsListPage />,
+        element: (
+          <React.Suspense>
+            <PatientsListPage />
+          </React.Suspense>
+        ),
       },
       {
         path: "branches-list",
-        element: <BranchesListPage />,
+        element: (
+          <React.Suspense>
+            <BranchesListPage />
+          </React.Suspense>
+        ),
       },
       {
         path: "notification",
-        element: <NotificationPage />,
+        element: (
+          <React.Suspense>
+            <NotificationPage />
+          </React.Suspense>
+        ),
       },
       {
         path: "settings",
-        element: <SettingsPage />,
+        element: (
+          <React.Suspense>
+            <SettingsPage />
+          </React.Suspense>
+        ),
       },
     ],
   },
@@ -60,27 +89,51 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "calendar",
-        element: <CalendarPage />,
+        element: (
+          <React.Suspense>
+            <CalendarPage />
+          </React.Suspense>
+        ),
       },
       {
         path: "analytics",
-        element: <AnalyticsPage />,
+        element: (
+          <React.Suspense>
+            <AnalyticsPage />
+          </React.Suspense>
+        ),
       },
       {
         path: "patients-list",
-        element: <PatientsListPage />,
+        element: (
+          <React.Suspense>
+            <PatientsListPage />
+          </React.Suspense>
+        ),
       },
       {
         path: "notification",
-        element: <NotificationPage />,
+        element: (
+          <React.Suspense>
+            <NotificationPage />
+          </React.Suspense>
+        ),
       },
       {
         path: "settings",
-        element: <SettingsPage />,
+        element: (
+          <React.Suspense>
+            <SettingsPage />
+          </React.Suspense>
+        ),
       },
       {
         path: "profile",
-        element: <Profile />,
+        element: (
+          <React.Suspense>
+            <ProfilePage />
+          </React.Suspense>
+        ),
       },
     ],
   },
@@ -90,23 +143,43 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "analytics",
-        element: <AnalyticsPage />,
+        element: (
+          <React.Suspense>
+            <AnalyticsPage />
+          </React.Suspense>
+        ),
       },
       {
         path: "doctors-list",
-        element: <DoctorsListPage />,
+        element: (
+          <React.Suspense>
+            <DoctorsListPage />
+          </React.Suspense>
+        ),
       },
       {
         path: "branches-list",
-        element: <BranchesListPage />,
+        element: (
+          <React.Suspense>
+            <BranchesListPage />
+          </React.Suspense>
+        ),
       },
       {
         path: "notification",
-        element: <NotificationPage />,
+        element: (
+          <React.Suspense>
+            <NotificationPage />
+          </React.Suspense>
+        ),
       },
       {
         path: "settings",
-        element: <SettingsPage />,
+        element: (
+          <React.Suspense>
+            <SettingsPage />
+          </React.Suspense>
+        ),
       },
       {
         path: "profile",

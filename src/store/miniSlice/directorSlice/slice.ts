@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { getDirector } from "./action";
 import { DirectorSliceState, DirectorState, Status } from "./types";
-import { RootState } from "../store";
+import { RootState } from "../../store";
 
 const initialState: DirectorSliceState = {
   items: [],

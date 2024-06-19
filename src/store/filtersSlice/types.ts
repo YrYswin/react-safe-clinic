@@ -1,3 +1,5 @@
+import { GenderState } from "../../utils/types";
+
 export interface FilterSliceState {
   doctors: DoctorFilterState;
   patients: PatientsFilterState;
@@ -7,19 +9,13 @@ export interface FilterSliceState {
 
 interface DoctorFilterState {
   search: string;
-  gender: GenderEnums;
+  gender: GenderState;
   age: string;
   tag: number;
 }
 
 interface PatientsFilterState {
   search: string;
-  gender: GenderEnums;
+  gender: GenderState;
   age: string;
-}
-
-export enum GenderEnums {
-  MALE = "Мужской",
-  FAMALE = "Женский",
-  ALL = "",
 }

@@ -2,7 +2,7 @@ import React from "react";
 import ContainerBox from "../components/UI/Container";
 import Header from "../components/admin/Header";
 
-export const NotificationPage: React.FC = () => {
+const NotificationPage: React.FC = () => {
   return (
     <>
       <Header isNotSearch={true} />
@@ -10,3 +10,5 @@ export const NotificationPage: React.FC = () => {
     </>
   );
 };
+
+export default NotificationPage
