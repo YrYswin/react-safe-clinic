@@ -1,13 +1,23 @@
 import { styled } from "@mui/material";
 import React from "react";
 
-const Logo: React.FC = () => {
+interface LogoProps {
+  withTitle: boolean;
+  textSize?: number;
+}
+
+const Logo: React.FC<LogoProps> = ({ withTitle, textSize }) => {
   return (
-    <Container>
+    <Container fontSize={textSize}>
       <div>
         <img src="/icon/safe-clinic-logo.svg" alt="logo" />
         <h5>safe.clinic</h5>
       </div>
+      {withTitle && (
+        <p style={{ fontSize: "20px", fontWeight: "600" }}>
+          Вход на Веб-приложение
+        </p>
+      )}
       <p>Все условия для вашей безопасности</p>
     </Container>
   );
@@ -15,7 +25,7 @@ const Logo: React.FC = () => {
 
 export default Logo;
 
-const Container = styled("div")({
+const Container = styled("div")<{ fontSize?: number }>(({ fontSize }) => ({
   display: "flex",
   flexDirection: "column",
   gap: "10px",
@@ -24,13 +34,13 @@ const Container = styled("div")({
   div: {
     display: "flex",
     alignItems: "center",
-    gap: "5px",
+    gap: fontSize ? `${fontSize / 3}px` : "5px",
 
     img: {
       width: "30px",
     },
     h5: {
-      fontSize: "30px",
+      fontSize: fontSize ? `${fontSize}px` : "30px",
       fontWeight: "700",
       color: "rgb(83, 168, 187)",
     },
@@ -41,4 +51,4 @@ const Container = styled("div")({
     textAlign: "center",
     fontWeight: "500",
   },
-});
+}));

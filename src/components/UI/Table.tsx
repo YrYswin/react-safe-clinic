@@ -83,14 +83,18 @@ const TableUI: React.FC<CustomTableProps> = ({
       <TableContainer>
         <Table>
           <TableHead>
-            <TableRow>
-              {allKeys.map((key) => (
-                <TableCellHead>{keyMap[key] || key}</TableCellHead>
-              ))}
-              <TableCellHead style={{ width: "100px", textAlign: "center" }}>
-                Действия
-              </TableCellHead>
-            </TableRow>
+            {data.length !== 0 ? (
+              <TableRow>
+                {allKeys.map((key) => (
+                  <TableCellHead>{keyMap[key] || key}</TableCellHead>
+                ))}
+                <TableCellHead style={{ width: "100px", textAlign: "center" }}>
+                  Действия
+                </TableCellHead>
+              </TableRow>
+            ) : (
+              <h1 style={{ textAlign: "center" }}>Ничего не нашлось</h1>
+            )}
           </TableHead>
 
           <TableBody>

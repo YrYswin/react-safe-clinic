@@ -2,7 +2,7 @@ import React from "react";
 import { Button, styled } from "@mui/material";
 
 interface ButtonProps {
-  click: (e?: any) => void;
+  click?: (e?: any) => void;
   title?: string;
   icon?: string;
   customStyle?: React.CSSProperties;

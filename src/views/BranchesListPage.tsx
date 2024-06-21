@@ -18,22 +18,13 @@ import DeleteModal from "../components/admin/DeleteModal";
 
 const BranchesListPage: React.FC = () => {
   const dispatch = useAppDispatch();
+  const { items, status } = useSelector(selectBranch);
   const search = useSelector(selectSearchBranches);
-  console.log(search);
+  const director = useSelector(selectDirector);
 
   const [modal, setModal] = React.useState<string>("");
   const [filial, setFilial] = React.useState<BranchState>();
   const [update, setUpdate] = React.useState<boolean>(false);
-  const { items, status } = useSelector(selectBranch);
-  const director = useSelector(selectDirector);
-  console.log(items, status);
-
-  function closeModal(message: string) {
-    setModal(message);
-    if (status === Status.SUCCESS) {
-      dispatch(getBranches());
-    }
-  }
 
   React.useEffect(() => {
     dispatch(getBranches());
@@ -42,6 +33,13 @@ const BranchesListPage: React.FC = () => {
       alert("Error");
     }
   }, [dispatch, update]);
+
+  function closeModal(message: string) {
+    setModal(message);
+    if (status === Status.SUCCESS) {
+      dispatch(getBranches());
+    }
+  }
 
   const addBranch = () => {
     setModal("add");
@@ -59,6 +57,15 @@ const BranchesListPage: React.FC = () => {
     setModal("delete");
     setFilial(items.find((obj) => obj.id === id));
   };
+
+  const filterBranches = (items: BranchState[], query: string) => {
+    if (!query) {
+      return items;
+    }
+    const regex = new RegExp(query, "i");
+    return items.filter((item) => regex.test(item.name));
+  };
+  const filteredItems = filterBranches(items, search);
 
   return (
     <>
@@ -95,7 +102,7 @@ const BranchesListPage: React.FC = () => {
           />
         )}
         <TableUI
-          data={items}
+          data={filteredItems}
           title={"Наши филиалы"}
           addItem={addBranch}
           editItem={editBranch}
@@ -107,4 +114,4 @@ const BranchesListPage: React.FC = () => {
   );
 };
 
-export default BranchesListPage
+export default BranchesListPage;
