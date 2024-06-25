@@ -7,7 +7,7 @@ import { useAppDispatch } from "../store/store";
 import { getPatients } from "../store/patientsSlice/action";
 import { selectPatients } from "../store/patientsSlice/slice";
 import { selectFilterPatients } from "../store/filtersSlice/selectors";
-import { Status } from "../store/patientsSlice/types";
+import { PatientArrayState, Status } from "../store/patientsSlice/types";
 import {
   setPatientsAge,
   setPatientsGender,
@@ -64,6 +64,16 @@ const PatientsListPage: React.FC = () => {
     setModal("delete");
     setPatientId(id);
   };
+
+  const filterDoctors = (items: PatientArrayState[], query: string) => {
+    if (!query) {
+      return items;
+    }
+    const regex = new RegExp(query, "i");
+    return items.filter((item) => regex.test(item.full_name));
+  };
+  const filderedItems = filterDoctors(items, search);
+
   return (
     <>
       <Header
@@ -102,7 +112,7 @@ const PatientsListPage: React.FC = () => {
           />
         )}
         <TableUI
-          data={items}
+          data={filderedItems}
           title={"Список пациентов"}
           addItem={addPatient}
           editItem={editPatient}

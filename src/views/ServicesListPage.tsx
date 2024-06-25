@@ -26,8 +26,8 @@ const ServicesListPage: React.FC = () => {
   const [service, setService] = React.useState<ServiceState>();
   const [update, setUpdate] = React.useState<boolean>(false);
 
+  const search = useSelector(selectSearchService);
   const { items, status } = useSelector(selectService);
-  const services = useSelector(selectSearchService);
   const serviceCategory = useSelector(selectSerCat);
   console.log(items, status);
 
@@ -59,12 +59,22 @@ const ServicesListPage: React.FC = () => {
     setModal("delete");
     setService(items.find((obj) => obj.id === id));
   };
+
+  const filterService = (items: ServiceState[], query: string) => {
+    if (!query) {
+      return items;
+    }
+    const regex = new RegExp(query, "i");
+    return items.filter((item) => regex.test(item.name));
+  };
+
+  const filteredService = filterService(items, search);
   return (
     <>
       <Header
         pl={"Поиск услуги..."}
         onChange={(e) => dispatch(setServicesSearch(e))}
-        value={services}
+        value={search}
       />
       <ContainerBox>
         {modal === "add" && (
@@ -94,7 +104,7 @@ const ServicesListPage: React.FC = () => {
           />
         )}
         <TableUI
-          data={items}
+          data={filteredService}
           title={"Услуги"}
           addItem={addService}
           editItem={editService}
@@ -106,4 +116,4 @@ const ServicesListPage: React.FC = () => {
   );
 };
 
-export default ServicesListPage
+export default ServicesListPage;

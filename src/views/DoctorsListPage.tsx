@@ -14,7 +14,7 @@ import {
 } from "../store/filtersSlice/slice";
 import { selectDoc } from "../store/doctorsSlice/slice";
 import { getDoctorsList } from "../store/doctorsSlice/action";
-import { Status } from "../store/doctorsSlice/types";
+import { DoctorsArrayState, Status } from "../store/doctorsSlice/types";
 
 import { AddDoctor, EditDoctor, InfoDoctor } from "../components/admin/doctor";
 import DeleteModal from "../components/admin/DeleteModal";
@@ -31,7 +31,7 @@ const DoctorsListPage: React.FC = () => {
 
   React.useEffect(() => {
     dispatch(getDoctorsList({ genderDoc: gender, tag: tag }));
-  }, [update, dispatch]);
+  }, [update, dispatch, gender, tag]);
 
   function closeModal(message: string) {
     setModal(message);
@@ -56,6 +56,15 @@ const DoctorsListPage: React.FC = () => {
     setModal("delete");
     setDoctorId(id);
   };
+
+  const filterDoctors = (items: DoctorsArrayState[], query: string) => {
+    if (!query) {
+      return items;
+    }
+    const regex = new RegExp(query, "i");
+    return items.filter((item) => regex.test(item.name));
+  };
+  const filteredItems = filterDoctors(items, search);
   return (
     <>
       <Header
@@ -90,7 +99,7 @@ const DoctorsListPage: React.FC = () => {
           />
         )}
         <TableUI
-          data={items}
+          data={filteredItems}
           title={"Список врачей"}
           addItem={addDoctor}
           editItem={editDoctor}
