@@ -2,7 +2,7 @@ import { styled } from "@mui/material";
 import React from "react";
 
 interface LogoProps {
-  withTitle: boolean;
+  withTitle?: boolean;
   textSize?: number;
 }
 
