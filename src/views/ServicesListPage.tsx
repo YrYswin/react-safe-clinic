@@ -29,7 +29,6 @@ const ServicesListPage: React.FC = () => {
   const search = useSelector(selectSearchService);
   const { items, status } = useSelector(selectService);
   const serviceCategory = useSelector(selectSerCat);
-  console.log(items, status);
 
   React.useEffect(() => {
     dispatch(getServiceCategory());
@@ -104,7 +103,7 @@ const ServicesListPage: React.FC = () => {
           />
         )}
         <TableUI
-          data={filteredService}
+          services={filteredService}
           title={"Услуги"}
           addItem={addService}
           editItem={editService}

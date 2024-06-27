@@ -1,99 +1,104 @@
 import React from "react";
 import { styled } from "@mui/material";
-import Header from "../components/admin/Header";
-import TextFiled from "../components/UI/function/TextFiled";
-import WorkDays from "../components/UI/function/WorkDays";
-import axios from "axios";
-import { InfoDoctorsState } from "../store/doctorsSlice/types";
 
-const ProfilePage: React.FC = () => {
+import { InfoDoctorsState } from "../store/doctorsSlice/types";
+import { getDoctorByIdReq } from "../store/doctorsSlice/service";
+
+import Header from "../components/admin/Header";
+import WorkDays from "../components/UI/function/WorkDays";
+import ContainerBox from "../components/UI/Container";
+import TextContainer from "../components/UI/function/TextContainer";
+
+interface ProfilePageProps {
+  isDoctor?: boolean;
+  isClient?: boolean;
+  isDirector?: boolean;
+}
+
+const ProfilePage: React.FC<ProfilePageProps> = ({
+  isDoctor,
+  isClient,
+  isDirector,
+}) => {
   const [item, setItem] = React.useState<InfoDoctorsState>();
-  const getDoctorById = async (id: number) => {
-    const { data } = await axios.get(`http://192.168.1.12:8080/doctor/${id}`);
+
+  const getDoctor = async (id: number) => {
+    const { data } = await getDoctorByIdReq(id);
     setItem(data);
   };
 
   React.useEffect(() => {
-    getDoctorById(2);
+    getDoctor(2);
   }, []);
 
   return (
     <>
       <Header isNotSearch={true} pageTitle="Профиль" />
-      <Container>
+      <ContainerBox>
         <MainInfoBox
           style={{ padding: "10px 40px", borderBottom: "1px dashed black" }}
         >
           <MainInfoBox>
-            <ProfileBox>
+            <ProfileBox isDoctor={isDoctor || false}>
               <div
                 style={{ display: "flex", alignItems: "center", gap: "20px" }}
               >
                 <AvatarImage
+                  isDoctor={isDoctor || false}
                   src={item?.photo ? item.photo : "/image/doctorAvatar.png"}
                   alt="avatar"
                 />
                 <TitleBox>
-                  <h1>{item?.name}</h1>
-                  <p>{item?.tag}</p>
+                  <h1>{item?.name || "-"} </h1>
+                  <p>{item?.tag || "-"} </p>
                 </TitleBox>
               </div>
-              <button type="button">
+              <button
+                type="button"
+                onClick={() => console.log("Редактировать")}
+              >
                 <img src="/icon/editProfile.svg" alt="edit" />
                 <p>Редактировать</p>
               </button>
             </ProfileBox>
           </MainInfoBox>
 
-          <CLientBox style={{ backgroundColor: "#f6fbfc" }}>
-            <TitleBox>
-              <span>{item?.client}</span>
-              <h5>Всего клиентов</h5>
-            </TitleBox>
-            <ClinetIconBox>
-              <img src="/icon/clientCount.svg" alt="client" />
-            </ClinetIconBox>
-          </CLientBox>
+          {!isClient && (
+            <CLientBox style={{ backgroundColor: "#f6fbfc" }}>
+              <TitleBox>
+                <span>{item?.client}</span>
+                <h5>Всего клиентов</h5>
+              </TitleBox>
+              <ClinetIconBox>
+                <img src="/icon/clientCount.svg" alt="client" />
+              </ClinetIconBox>
+            </CLientBox>
+          )}
         </MainInfoBox>
+
         <PersonalInfo>
           <h1>Личная информация</h1>
-          <div style={{ display: "flex", flexWrap: "wrap", padding: "0 20px" }}>
-            <TextFiled label="ФИО" value={item?.name || "None"} />
-            <TextFiled label="Опыт работы" value="7 лет" />
-            <TextFiled label="Дата рождения" value={item?.birthday || "None"} />
-            <TextFiled label="Телефон" value={item?.phone_number || "None"} />
-            <TextFiled label="Статус" value={item?.tag || "None"} />
-            <TextFiled label="Email" value={item?.email || "None"} />
-            <TextFiled
-              label="О себе"
-              value="Я — врач-стоматолог. Закончил Иркутский Государственный Медицинский Университет. Начало практики-2017"
-            />
-            <div
-              style={{ display: "flex", flexDirection: "column", padding: "0" }}
-            >
-              <TextFiled label="Пол" value={item?.gender || "None"} />
-              <TextFiled label="Адрес" value={item?.address || "None"} />
-            </div>
-          </div>
+          <TextContainer
+            isDirector={isDirector || false}
+            isDoctor={isDoctor || false}
+            isClient={isClient || false}
+            data={item}
+          />
         </PersonalInfo>
-        <PersonalInfo style={{ borderTop: "1px dashed" }}>
-          <h1>График работы</h1>
 
-          <WorkDays />
-        </PersonalInfo>
-      </Container>
+        {isDoctor && (
+          <PersonalInfo style={{ borderTop: "1px dashed" }}>
+            <h1>График работы</h1>
+
+            <WorkDays />
+          </PersonalInfo>
+        )}
+      </ContainerBox>
     </>
   );
 };
 
 export default ProfilePage;
-
-const Container = styled("div")({
-  borderRadius: "10px",
-  height: "100%",
-  marginBottom: "20px",
-  backgroundColor: "white",
-});
 
 const MainInfoBox = styled("div")({
   display: "flex",
@@ -101,25 +106,26 @@ const MainInfoBox = styled("div")({
   alignItems: "center",
   gap: "20px",
 });
-const AvatarImage = styled("img")({
-  width: "120px",
-  height: "120px",
+
+const AvatarImage = styled("img")<{ isDoctor: boolean }>(({ isDoctor }) => ({
+  width: isDoctor ? "120px" : "150px",
+  height: isDoctor ? "120px" : "150px",
   borderRadius: "100%",
   objectFit: "cover",
-});
+}));
 
-const ProfileBox = styled("div")({
+const ProfileBox = styled("div")<{ isDoctor: boolean }>(({ isDoctor }) => ({
   display: "flex",
   flexDirection: "column",
   gap: "10px",
 
   button: {
-    width: "120px",
+    width: isDoctor ? "120px" : "150px",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
     gap: "5px",
-    padding: "3px",
+    padding: isDoctor ? "3px" : "5px",
     borderRadius: "7px",
     border: "1px solid #b4e4ed",
     backgroundColor: "#c2f2fc",
@@ -136,11 +142,11 @@ const ProfileBox = styled("div")({
     },
 
     p: {
-      fontSize: "12px",
+      fontSize: isDoctor ? "12px" : "14px",
       fontWeight: "500",
     },
   },
-});
+}));
 
 const CLientBox = styled("div")({
   display: "flex",
@@ -179,9 +185,11 @@ const TitleBox = styled("div")({
 });
 
 const PersonalInfo = styled("div")({
+  padding: "10px 0",
   h1: {
     textAlign: "center",
     fontSize: "20px",
     fontWeight: "600",
+    margin: "10px auto",
   },
 });

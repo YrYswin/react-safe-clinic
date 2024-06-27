@@ -46,7 +46,6 @@ const DayCalendarTable: React.FC = () => {
       newClient.timeHourStart = Number(
         HourArray.find((x) => x.time === times?.[0])?.id
       );
-      console.log(newClient.timeHourStart);
       newClient.timeHourEnd =
         Number(HourArray.find((x) => x.time === times?.[1])?.id) - 1;
       return newClient;

@@ -74,6 +74,7 @@ export const EditDoctor: React.FC<EditDoctorProps> = ({
           ...data,
           photo: file,
         };
+        console.log(editData);
         const response = await dispatch(patchDoctor(editData));
         if (response.meta.requestStatus === "fulfilled") {
           onClose("");

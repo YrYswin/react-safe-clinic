@@ -15,55 +15,168 @@ import { PatientArrayState } from "../../store/patientsSlice/types";
 
 import ButtonUI from "./function/ButtonUI";
 
-type DataState =
-  | BranchState
-  | ServiceState
-  | DoctorsArrayState
-  | PatientArrayState;
-
 interface CustomTableProps {
-  data: DataState[];
   title: string;
   addItem: () => void;
   editItem: (e: number) => void;
   deleteItem: (e: number) => void;
   infoItem: (e: number) => void;
+  branches?: BranchState[];
+  services?: ServiceState[];
+  doctors?: DoctorsArrayState[];
+  patients?: PatientArrayState[];
 }
 
 const TableUI: React.FC<CustomTableProps> = ({
-  data,
   addItem,
   editItem,
   deleteItem,
   infoItem,
   title,
+  branches,
+  services,
+  doctors,
+  patients,
 }) => {
-  const keyMap: { [key: string]: string } = {
-    name: "Название",
-    address: "Адрес",
-    director: "Директор",
-    description: "Описание",
-    price: "Стоимость",
-    email: "Email",
-    tag: "Теги",
-    client: "Клиенты",
-    full_name: "Имя",
-    date_of_appointment: "Дата посещения",
-    phone_number: "Телефон",
-  };
+  const branchTable = branches && (
+    <Table>
+      <TableHead>
+        <TableRow>
+          <TableCellHead>Название</TableCellHead>
+          <TableCellHead>Адрес</TableCellHead>
+          <TableCellHead>Директор</TableCellHead>
+          <TableCellHead style={{ width: "100px", textAlign: "center" }}>
+            Действия
+          </TableCellHead>
+        </TableRow>
+      </TableHead>
 
-  const allKeys = Array.from(
-    new Set(
-      data.flatMap((item) =>
-        Object.keys(item).filter(
-          (key) =>
-            key !== "id" &&
-            key !== "category" &&
-            key !== "photo" &&
-            key !== "time_of_appointment"
-        )
-      )
-    )
+      <TableBody>
+        {branches.map(({ name, director, id, address }) => (
+          <StyledTableRowBody key={id}>
+            <StyledTableCellBody onClick={() => infoItem(id)}>
+              {name}
+            </StyledTableCellBody>
+            <StyledTableCellBody>{address}</StyledTableCellBody>
+            <StyledTableCellBody>{director}</StyledTableCellBody>
+            <StyledTableCellBtn>
+              <button onClick={() => editItem(id)}>
+                <img src="/icon/edit.svg" alt="action" />
+              </button>
+              <button onClick={() => deleteItem(id)}>
+                <img src="/icon/delete.svg" alt="action" />
+              </button>
+            </StyledTableCellBtn>
+          </StyledTableRowBody>
+        ))}
+      </TableBody>
+    </Table>
+  );
+  const serivicesTable = services && (
+    <Table>
+      <TableHead>
+        <TableRow>
+          <TableCellHead>Название</TableCellHead>
+          <TableCellHead>Описание</TableCellHead>
+          <TableCellHead>Стоимость</TableCellHead>
+          <TableCellHead style={{ width: "100px", textAlign: "center" }}>
+            Действия
+          </TableCellHead>
+        </TableRow>
+      </TableHead>
+
+      <TableBody>
+        {services.map(({ photo, name, description, id, price }) => (
+          <StyledTableRowBody key={id}>
+            <StyledTableCellBody onClick={() => infoItem(id)}>
+              <ItemImage src={photo} />
+              {name}
+            </StyledTableCellBody>
+            <StyledTableCellBody>
+              <Description>{description}</Description>
+            </StyledTableCellBody>
+            <StyledTableCellBody>{price}</StyledTableCellBody>
+            <StyledTableCellBtn>
+              <button onClick={() => editItem(id)}>
+                <img src="/icon/edit.svg" alt="action" />
+              </button>
+              <button onClick={() => deleteItem(id)}>
+                <img src="/icon/delete.svg" alt="action" />
+              </button>
+            </StyledTableCellBtn>
+          </StyledTableRowBody>
+        ))}
+      </TableBody>
+    </Table>
+  );
+  const doctorsTable = doctors && (
+    <Table>
+      <TableHead>
+        <TableRow>
+          <TableCellHead>Название</TableCellHead>
+          <TableCellHead>Адрес</TableCellHead>
+          <TableCellHead>Директор</TableCellHead>
+          <TableCellHead style={{ width: "100px", textAlign: "center" }}>
+            Действия
+          </TableCellHead>
+        </TableRow>
+      </TableHead>
+
+      <TableBody>
+        {doctors.map(({ name, photo, id, email, client }) => (
+          <StyledTableRowBody key={id}>
+            <StyledTableCellBody onClick={() => infoItem(id)}>
+              <ItemImage src={photo} />
+              {name}
+            </StyledTableCellBody>
+            <StyledTableCellBody>{email}</StyledTableCellBody>
+            <StyledTableCellBody>{client}</StyledTableCellBody>
+            <StyledTableCellBtn>
+              <button onClick={() => editItem(id)}>
+                <img src="/icon/edit.svg" alt="action" />
+              </button>
+              <button onClick={() => deleteItem(id)}>
+                <img src="/icon/delete.svg" alt="action" />
+              </button>
+            </StyledTableCellBtn>
+          </StyledTableRowBody>
+        ))}
+      </TableBody>
+    </Table>
+  );
+  const patientsTable = patients && (
+    <Table>
+      <TableHead>
+        <TableRow>
+          <TableCellHead>Название</TableCellHead>
+          <TableCellHead>Адрес</TableCellHead>
+          <TableCellHead>Директор</TableCellHead>
+          <TableCellHead style={{ width: "100px", textAlign: "center" }}>
+            Действия
+          </TableCellHead>
+        </TableRow>
+      </TableHead>
+
+      <TableBody>
+        {patients.map(({ full_name, date_of_appointment, id, address }) => (
+          <StyledTableRowBody key={id}>
+            <StyledTableCellBody onClick={() => infoItem(id)}>
+              {full_name}
+            </StyledTableCellBody>
+            <StyledTableCellBody>{address}</StyledTableCellBody>
+            <StyledTableCellBody>{date_of_appointment}</StyledTableCellBody>
+            <StyledTableCellBtn>
+              <button onClick={() => editItem(id)}>
+                <img src="/icon/edit.svg" alt="action" />
+              </button>
+              <button onClick={() => deleteItem(id)}>
+                <img src="/icon/delete.svg" alt="action" />
+              </button>
+            </StyledTableCellBtn>
+          </StyledTableRowBody>
+        ))}
+      </TableBody>
+    </Table>
   );
 
   return (
@@ -81,75 +194,10 @@ const TableUI: React.FC<CustomTableProps> = ({
         />
       </TableTitle>
       <TableContainer>
-        <Table>
-          <TableHead>
-            {data.length !== 0 ? (
-              <TableRow>
-                {allKeys.map((key) => (
-                  <TableCellHead>{keyMap[key] || key}</TableCellHead>
-                ))}
-                <TableCellHead style={{ width: "100px", textAlign: "center" }}>
-                  Действия
-                </TableCellHead>
-              </TableRow>
-            ) : (
-              <h1 style={{ textAlign: "center" }}>Ничего не нашлось</h1>
-            )}
-          </TableHead>
-
-          <TableBody>
-            {data.map((row, index) => (
-              <StyledTableRowBody key={index}>
-                {allKeys.map((key) => (
-                  <StyledTableCellBody key={key}>
-                    {key === "name" && (row as ServiceState).photo ? (
-                      <div
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                        }}
-                      >
-                        <ItemImage
-                          src={
-                            (row as ServiceState).photo ||
-                            (row as DoctorsArrayState).photo ||
-                            "/image/Avatar.jpg"
-                          }
-                          alt="Фото"
-                          onClick={() => infoItem(row.id)}
-                        />
-                        {row[key as keyof DataState]}
-                      </div>
-                    ) : key === "full_name" ? (
-                      <p
-                        style={{ cursor: "pointer" }}
-                        onClick={() => infoItem(row.id)}
-                      >
-                        {String(row[key as keyof DataState])?.substring(0, 70) +
-                          "..."}
-                      </p>
-                    ) : key === "description" ? (
-                      <Description>
-                        {String(row[key as keyof DataState])?.substring(0, 70) +
-                          "..."}
-                      </Description>
-                    ) : (
-                      row[key as keyof DataState]?.toString() || "-"
-                    )}
-                  </StyledTableCellBody>
-                ))}
-                <StyledTableCellBtn>
-                  <button onClick={() => editItem(row.id)}>
-                    <img src="/icon/edit.svg" alt="action" />
-                  </button>
-                  <button onClick={() => deleteItem(row.id)}>
-                    <img src="/icon/delete.svg" alt="action" />
-                  </button>
-                </StyledTableCellBtn>
-              </StyledTableRowBody>
-            ))}
-          </TableBody>
-        </Table>
+        {branches && branchTable}
+        {services && serivicesTable}
+        {doctors && doctorsTable}
+        {patients && patientsTable}
       </TableContainer>
     </>
   );

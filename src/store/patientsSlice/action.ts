@@ -34,7 +34,6 @@ export const getOnePatient = createAsyncThunk<
 >("patient/getOnePatient", async (id, { rejectWithValue }) => {
   try {
     const { data } = await getOnePatientReq(id);
-    console.log(data, id);
     return data;
   } catch (err) {
     return rejectWithValue("Something went wrong!!!");

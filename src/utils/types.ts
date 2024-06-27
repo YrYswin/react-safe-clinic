@@ -2,6 +2,7 @@ export interface NavigateListState {
   admin: NavigateState[];
   doctor: NavigateState[];
   director: NavigateState[];
+  client: NavigateState[];
 }
 
 export interface NavigateState {

@@ -97,6 +97,28 @@ export const NavigateList: NavigateListState = {
       icon: "/icon/navigateIcon/settings.svg",
     },
   ],
+  client: [
+    {
+      name: "Мои записи",
+      pathname: "my-notes",
+      icon: "/icon/navigateIcon/analytics.svg",
+    },
+    {
+      name: "Мои оплаты",
+      pathname: "my-payments",
+      icon: "/icon/navigateIcon/payments.svg",
+    },
+    {
+      pathname: "notification",
+      name: "Уведомления",
+      icon: "/icon/navigateIcon/notification.svg",
+    },
+    {
+      pathname: "settings",
+      name: "Настройки",
+      icon: "/icon/navigateIcon/settings.svg",
+    },
+  ],
 };
 export const doctorsSearch: searchParamsState[] = [
   {
@@ -119,15 +141,15 @@ export const doctorsSearch: searchParamsState[] = [
     children: [
       {
         key: "2-1",
-        label: "Директор",
+        label: "Стаматолог",
       },
       {
         key: "2-2",
-        label: "Администратор",
+        label: "Хирург",
       },
       {
         key: "2-3",
-        label: "Стаматолог",
+        label: "Хирург-Имплантолог",
       },
       {
         key: "2-4",
@@ -139,11 +161,7 @@ export const doctorsSearch: searchParamsState[] = [
       },
       {
         key: "2-6",
-        label: "Хирург",
-      },
-      {
-        key: "2-7",
-        label: "Пациент",
+        label: "Хирург-Ортопед",
       },
     ],
   },
@@ -209,13 +227,12 @@ export const patinetsSearch: searchParamsState[] = [
   },
 ];
 export const tagArray: tagState[] = [
-  { id: 1, name: "Директор", label: "2-1" },
-  { id: 2, name: "Администратор", label: "2-2" },
-  { id: 3, name: "Стаматолог", label: "2-3" },
+  { id: 1, name: "Стаматолог", label: "2-1" },
+  { id: 2, name: "Хирург", label: "2-2" },
+  { id: 3, name: "Хирург-Имплантолог", label: "2-3" },
   { id: 4, name: "Рентгенолог", label: "2-4" },
   { id: 5, name: "Педиатор", label: "2-5" },
-  { id: 6, name: "Хирург", label: "2-6" },
-  { id: 7, name: "Пациент", label: "2-7" },
+  { id: 6, name: "Хирург-Ортопед", label: "2-6" },
 ];
 export const Time_POINT: string[] = [
   "08:00-09:00",

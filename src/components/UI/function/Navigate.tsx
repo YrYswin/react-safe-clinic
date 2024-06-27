@@ -31,17 +31,19 @@ const ContainerStyle = styled("div")({
 const NavLinkStyle = styled(NavLink)({
   display: "flex",
   alignItems: "center",
-  width: "90%",
+  width: "100%",
   gap: "10px",
   padding: "7px 17px",
   borderRadius: "5px",
   transition: "all 0.2s ease-in",
 
-  "&:hover , &.active": {
+  "&:hover": {
     backgroundColor: "rgb(221, 220, 255)",
-    marginLeft: "20px",
+    marginLeft: "10px",
   },
   "&.active": {
+    backgroundColor: "rgb(221, 220, 255)",
+    marginLeft: "10px",
     h3: {
       fontWeight: "600",
     },
@@ -49,9 +51,11 @@ const NavLinkStyle = styled(NavLink)({
 
   img: {
     width: "20px",
+    height: "20px",
   },
   h3: {
     fontSize: "14px",
     color: "black",
+    width: "130px",
   },
 });

@@ -1,10 +1,8 @@
 import React from "react";
-import ContainerBox from "../components/UI/Container";
-import Header from "../components/admin/Header";
+import { useSelector } from "react-redux";
 
 import { doctorsSearch } from "../utils/constant";
 import { selectFilterDoctors } from "../store/filtersSlice/selectors";
-import { useSelector } from "react-redux";
 import { useAppDispatch } from "../store/store";
 import {
   setDoctorTag,
@@ -15,7 +13,10 @@ import {
 import { selectDoc } from "../store/doctorsSlice/slice";
 import { getDoctorsList } from "../store/doctorsSlice/action";
 import { DoctorsArrayState, Status } from "../store/doctorsSlice/types";
+import { tagArray } from "../utils/constant";
 
+import Header from "../components/admin/Header";
+import ContainerBox from "../components/UI/Container";
 import { AddDoctor, EditDoctor, InfoDoctor } from "../components/admin/doctor";
 import DeleteModal from "../components/admin/DeleteModal";
 import TableUI from "../components/UI/Table";
@@ -27,16 +28,15 @@ const DoctorsListPage: React.FC = () => {
   const [doctorId, setDoctorId] = React.useState<number>();
   const [update, setUpdate] = React.useState<boolean>(false);
   const { items, status } = useSelector(selectDoc);
-  console.log(items, status);
 
   React.useEffect(() => {
-    dispatch(getDoctorsList({ genderDoc: gender, tag: tag }));
+    dispatch(getDoctorsList({ genderDoc: gender }));
   }, [update, dispatch, gender, tag]);
 
   function closeModal(message: string) {
     setModal(message);
     if (status === Status.SUCCESS) {
-      dispatch(getDoctorsList({ tag, genderDoc: gender }));
+      dispatch(getDoctorsList({ genderDoc: gender }));
     }
   }
 
@@ -57,14 +57,31 @@ const DoctorsListPage: React.FC = () => {
     setDoctorId(id);
   };
 
-  const filterDoctors = (items: DoctorsArrayState[], query: string) => {
-    if (!query) {
-      return items;
+  const filterDoctors = (
+    items: DoctorsArrayState[],
+    query: string,
+    tag: number
+  ) => {
+    let filteredItems = items;
+
+    if (query) {
+      const regex = new RegExp(query, "i");
+      filteredItems = filteredItems.filter((item) => regex.test(item.name));
     }
-    const regex = new RegExp(query, "i");
-    return items.filter((item) => regex.test(item.name));
+
+    if (tag) {
+      const selectedTag = tagArray.find((t) => t.id === tag);
+      if (selectedTag) {
+        filteredItems = filteredItems.filter(
+          (item) => item.tag === selectedTag.name
+        );
+      }
+    }
+
+    return filteredItems;
   };
-  const filteredItems = filterDoctors(items, search);
+  const filteredItems = filterDoctors(items, search, tag);
+
   return (
     <>
       <Header
@@ -99,7 +116,7 @@ const DoctorsListPage: React.FC = () => {
           />
         )}
         <TableUI
-          data={filteredItems}
+          doctors={filteredItems}
           title={"Список врачей"}
           addItem={addDoctor}
           editItem={editDoctor}

@@ -7,7 +7,7 @@ interface TextFiledProps {
 
 const TextFiled: React.FC<TextFiledProps> = ({ label, value }) => {
   return (
-    <div style={{ width: "50%", margin: "4px 0" }}>
+    <div style={{ width: "50%" }}>
       <p>
         <b>{label + ":  "}</b>
         {value}

@@ -29,9 +29,6 @@ const BranchesListPage: React.FC = () => {
   React.useEffect(() => {
     dispatch(getBranches());
     dispatch(getDirector());
-    if (status === Status.ERROR) {
-      alert("Error");
-    }
   }, [dispatch, update]);
 
   function closeModal(message: string) {
@@ -102,7 +99,7 @@ const BranchesListPage: React.FC = () => {
           />
         )}
         <TableUI
-          data={filteredItems}
+          branches={filteredItems}
           title={"Наши филиалы"}
           addItem={addBranch}
           editItem={editBranch}

@@ -4,9 +4,12 @@ import { DoctorsState } from "./types";
 import { CreateDoctorsState } from "./types";
 ///GET///
 export const getDoctorsListReq = (params: ParamsState) => {
-  const { tag, genderDoc } = params;
-  console.log(tag, genderDoc);
+  const { genderDoc } = params;
   return axiosInstance.get(`doctor/?gender=${genderDoc}`);
+};
+
+export const getDoctorByIdReq = (id: number) => {
+  return axiosInstance.get(`doctor/${id}`);
 };
 
 export const getOneDoctorReq = (id: number) => {

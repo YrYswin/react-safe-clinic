@@ -37,7 +37,6 @@ export const EditService: React.FC<AddServiceProps> = ({
   const inputFileRef = React.useRef<HTMLInputElement>(null);
   const [file, setFile] = React.useState<File>();
   const dispatch = useAppDispatch();
-  console.log(file);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -48,7 +47,6 @@ export const EditService: React.FC<AddServiceProps> = ({
   const createService = async (data: EditServiceState) => {
     setLoading(true);
     try {
-      console.log(data);
       const response = await dispatch(patchService({ ...data, photo: file }));
       if (response.meta.requestStatus === "fulfilled") {
         onClose("");

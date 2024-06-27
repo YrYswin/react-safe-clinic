@@ -40,7 +40,6 @@ export const AddPatient: React.FC<AddDoctorProps> = ({
         ...data,
         time_of_appointment: timeValue,
       };
-      console.log(newData);
       const response = await dispatch(postPatients(newData));
       if (response.meta.requestStatus === "fulfilled") {
         onClose("");
@@ -49,7 +48,6 @@ export const AddPatient: React.FC<AddDoctorProps> = ({
       } else {
         setLoading(false);
         alert("Что то пошло не так");
-        console.log(response);
       }
     } catch (err) {
       console.log(err);

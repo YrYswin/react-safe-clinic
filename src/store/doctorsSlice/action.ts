@@ -5,7 +5,6 @@ import { GenderState } from "../../utils/types";
 
 export type ParamsState = {
   genderDoc: GenderState;
-  tag: number;
 };
 
 export const getDoctorsList = createAsyncThunk<

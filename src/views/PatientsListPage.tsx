@@ -35,11 +35,10 @@ const PatientsListPage: React.FC = () => {
 
   const { items, status } = useSelector(selectPatients);
   const doctors = useSelector(selectDoc);
-  console.log(items, status);
 
   React.useEffect(() => {
     dispatch(getPatients({ genderPat: gender }));
-    dispatch(getDoctorsList({ tag: 0, genderDoc: GenderState.ALL }));
+    dispatch(getDoctorsList({ genderDoc: GenderState.ALL }));
   }, [update, dispatch]);
 
   function closeModal(message: string) {
@@ -72,7 +71,8 @@ const PatientsListPage: React.FC = () => {
     const regex = new RegExp(query, "i");
     return items.filter((item) => regex.test(item.full_name));
   };
-  const filderedItems = filterDoctors(items, search);
+  const filteredItems = filterDoctors(items, search);
+  console.log(filteredItems);
 
   return (
     <>
@@ -112,7 +112,7 @@ const PatientsListPage: React.FC = () => {
           />
         )}
         <TableUI
-          data={filderedItems}
+          patients={filteredItems}
           title={"Список пациентов"}
           addItem={addPatient}
           editItem={editPatient}

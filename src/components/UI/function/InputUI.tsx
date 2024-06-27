@@ -37,15 +37,15 @@ const InputUI: React.FC<InputUIProps> = ({
       onTag && onTag(findTag.id);
     }
     if (key === "3-1") {
-      onAge && onAge("до 20");
+      onAge && onAge("0-20");
     } else if (key === "3-2") {
-      onAge && onAge("от 20 до 30");
+      onAge && onAge("20-30");
     } else if (key === "3-3") {
-      onAge && onAge("от 30 до 40");
+      onAge && onAge("30-40");
     } else if (key === "3-4") {
-      onAge && onAge("от 40 до 50");
+      onAge && onAge("40-50");
     } else if (key === "3-5") {
-      onAge && onAge("от 50");
+      onAge && onAge("50+");
     }
   };
 
@@ -83,7 +83,7 @@ const InputUI: React.FC<InputUIProps> = ({
 export default InputUI;
 
 const Container = styled("div")<{ isFilter: boolean }>(({ isFilter }) => ({
-  display: "flex",
+  display: "inline-flex",
   border: "1px solid gray",
   borderRadius: "7px",
   padding: "0px 5px",

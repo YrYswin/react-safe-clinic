@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, styled } from "@mui/material";
+import { styled } from "@mui/material";
 
 interface ContainerProps {
   children: React.ReactNode;
@@ -11,10 +11,16 @@ const ContainerBox: React.FC<ContainerProps> = ({ children }) => {
 
 export default ContainerBox;
 
-const ContainerStyle = styled(Container)({
-  margin: "0",
+const ContainerStyle = styled("div")({
   padding: "10px !important",
   backgroundColor: "white",
-  borderRadius: "10px 10px 0 0",
+  borderRadius: "10px",
   height: "100%",
+  marginBottom: "20px",
+
+  h1: {
+    fontSize: "20px",
+    fontWeight: "500",
+    margin: "10px 20px",
+  },
 });
