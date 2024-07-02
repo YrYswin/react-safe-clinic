@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://192.168.68.111:8080/";
+const BASE_URL = "http://192.168.68.118:8080/";
 
 const jsonHeaders = {
   "Content-Type": "application/json",

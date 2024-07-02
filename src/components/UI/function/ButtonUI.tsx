@@ -32,6 +32,6 @@ const ButtonStyle = styled(Button)({
   cursor: "pointer",
 
   "&:hover": {
-    backgroundColor: "blue",
+    backgroundColor: "#fff",
   },
 });

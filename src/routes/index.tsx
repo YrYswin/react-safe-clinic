@@ -15,6 +15,7 @@ const SettingsPage = React.lazy(() => import("../views/SettingsPage"));
 const ProfilePage = React.lazy(() => import("../views/ProfilePage"));
 const MyNotesList = React.lazy(() => import("../views/MyNotesList"));
 const MyPaymentsList = React.lazy(() => import("../views/MyPaymentsList"));
+const HomePage = React.lazy(() => import("../views/HomePage"));
 
 MyNotesList;
 MyPaymentsList;
@@ -24,6 +25,10 @@ import NonePage from "../views/NonePage";
 export const router = createBrowserRouter([
   {
     path: "/",
+    element: <HomePage />,
+  },
+  {
+    path: "/auth",
     element: <Auth />,
   },
   {
