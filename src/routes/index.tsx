@@ -21,11 +21,22 @@ MyNotesList;
 MyPaymentsList;
 import { NavigateList } from "../utils/constant";
 import NonePage from "../views/NonePage";
+import UserAuth from "../components/auth/UserAuth";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <HomePage />,
+    children: [
+      {
+        path: "/userAuth",
+        element: <UserAuth />,
+      },
+      {
+        path: "/userLogin",
+        element: <UserAuth />,
+      },
+    ],
   },
   {
     path: "/auth",

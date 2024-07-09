@@ -8,6 +8,7 @@ import doctorsSlice from "./doctorsSlice/slice";
 import patientsSlice from "./patientsSlice/slice";
 import directorSlice from "./miniSlice/directorSlice/slice";
 import serviceCategorySlice from "./miniSlice/serviceCategory/slice";
+import userSlice from "./userSlice/slice";
 
 export const store = configureStore({
   reducer: {
@@ -18,6 +19,7 @@ export const store = configureStore({
     [patientsSlice.name]: patientsSlice.reducer,
     [directorSlice.name]: directorSlice.reducer,
     [serviceCategorySlice.name]: serviceCategorySlice.reducer,
+    [userSlice.name]: userSlice.reducer,
   },
 });
 

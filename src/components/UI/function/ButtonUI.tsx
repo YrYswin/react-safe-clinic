@@ -30,8 +30,4 @@ const ButtonStyle = styled(Button)({
   padding: "7px 17px",
   borderRadius: "5px",
   cursor: "pointer",
-
-  "&:hover": {
-    backgroundColor: "#fff",
-  },
 });

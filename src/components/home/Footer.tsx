@@ -82,15 +82,15 @@ const FlexBox = styled("div")({
     flexDirection: "column",
     gap: "15px",
 
-    "li:first-child": {
-      fontSize: "22px",
-      fontWeight: "500",
-    },
-
     li: {
       display: "flex",
       gap: "10px",
       alignItems: "center",
+
+      "&:first-of-type": {
+        fontSize: "22px",
+        fontWeight: "500",
+      },
     },
   },
 });

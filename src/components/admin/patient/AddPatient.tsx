@@ -144,7 +144,7 @@ export const AddPatient: React.FC<AddDoctorProps> = ({
 
                 <InfoDate>
                   <label>Время*</label>
-                  <InputData readOnly value={timeValue} />
+                  <InputData readOnly defaultValue={timeValue} />
                   {errors.time_of_appointment && (
                     <span>Укажите время прихода пациента</span>
                   )}

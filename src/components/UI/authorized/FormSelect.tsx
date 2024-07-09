@@ -19,7 +19,7 @@ const FormSelect: React.FC<FormSelectProps> = ({ icon, tags, title }) => {
         <SelectBox>
           <select>
             {tags.map((tag) => (
-              <option key={tag.id} value={tag.name}>
+              <option key={tag.id} defaultValue={tag.name}>
                 {tag.name}
               </option>
             ))}

@@ -13,11 +13,13 @@ import { ourClinic } from "../utils/homeItems";
 import NewsClinic from "../components/home/components/NewsClinic";
 import ConsultationPage from "../components/home/components/ConsultationPage";
 import AddressAndContact from "../components/home/components/AddressAndContact";
+import { Outlet } from "react-router-dom";
 
 const HomePage: React.FC = () => {
   return (
     <>
       <Header />
+      <Outlet />
 
       <Components>
         <Banner />

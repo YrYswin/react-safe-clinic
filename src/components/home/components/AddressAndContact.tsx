@@ -35,12 +35,12 @@ const AddressAndContact: React.FC = () => {
           </div>
         </div>
       </Contact>
-      <Address>
+      <div>
         <Maps />
 
         <div>
           <div>
-            <select value={"Выберите врача"}>
+            <select defaultValue={"Выберите врача"}>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -49,7 +49,7 @@ const AddressAndContact: React.FC = () => {
           </div>
           <ButtonUI title="Записаться на прием" />
         </div>
-      </Address>
+      </div>
     </Container>
   );
 };
@@ -90,4 +90,3 @@ const Contact = styled("div")({
     },
   },
 });
-const Address = styled("div")({});

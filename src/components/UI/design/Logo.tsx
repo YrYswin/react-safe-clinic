@@ -6,6 +6,7 @@ interface LogoProps {
   textSize?: number;
   color?: string;
   withinText?: boolean;
+  titleText?: string;
 }
 
 const Logo: React.FC<LogoProps> = ({
@@ -13,6 +14,7 @@ const Logo: React.FC<LogoProps> = ({
   textSize,
   color,
   withinText,
+  titleText,
 }) => {
   return (
     <Container fontSize={textSize} color={color}>
@@ -36,7 +38,12 @@ const Logo: React.FC<LogoProps> = ({
           Вход на Веб-приложение
         </p>
       )}
-      {!withinText && <p>Все условия для вашей безопасности</p>}
+      {!withinText && (
+        <p style={{ fontSize: titleText && "20px" }}>
+          {" "}
+          {titleText || "Все условия для вашей безопасности"}
+        </p>
+      )}
     </Container>
   );
 };

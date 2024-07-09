@@ -1,6 +1,5 @@
 import { styled } from "@mui/material";
 import React from "react";
-import ButtonUI from "../../UI/function/ButtonUI";
 
 const Banner: React.FC = () => {
   return (
@@ -9,7 +8,7 @@ const Banner: React.FC = () => {
         <h1>safe clinic</h1>
         <p>Мы делаем вашу улыбку здоровой и красивой с удовольствием.</p>
 
-        <ButtonUI title="Записаться" customStyle={styleBtn} />
+        <StyleBtn>Записаться</StyleBtn>
       </Information>
     </Container>
   );
@@ -43,10 +42,11 @@ const Information = styled("div")({
   },
 });
 
-const styleBtn: React.CSSProperties = {
-  width: "300px",
-  backgroundColor: "#53a8bb",
-  margin: 0,
+const StyleBtn = styled("button")({
+  width: "250px",
+  padding: "10px",
+  borderRadius: "7px",
+  backgroundColor: "#00b3d0",
   fontSize: "18px",
   color: "white",
-};
+});

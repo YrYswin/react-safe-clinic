@@ -9,7 +9,7 @@ const ConsultationPage: React.FC = () => {
         <h1>Запистатсья на бесплатную консультацию</h1>
         <div style={{ display: "flex", alignItems: "flex-end", gap: "10px" }}>
           <InputBox>
-            <label htmlFor="phone">Введите ваш телефон: </label>
+            <p>Введите ваш телефон: </p>
             <input type="text" placeholder="+996 (xxx) xxx-xxx" />
           </InputBox>
           <ButtonUI title="Записаться на прием" customStyle={styleBtn} />

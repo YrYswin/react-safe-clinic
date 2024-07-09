@@ -2,7 +2,7 @@ import React from "react";
 import { styled } from "@mui/material";
 
 interface FormInputProps {
-  icon: string;
+  icon?: string;
   title: string;
 }
 
@@ -11,11 +11,13 @@ const FormInput: React.FC<FormInputProps> = ({ icon, title }) => {
     <>
       <Title>{title}*</Title>
       <InputContainer>
-        <IconBox>
-          <img src={icon} alt={title} />
-        </IconBox>
+        {icon && (
+          <IconBox>
+            <img src={icon} alt={title} />
+          </IconBox>
+        )}
         <InputBox>
-          <input type="text" placeholder={`${title.toLowerCase()}...`} />
+          <input type="text" placeholder={title.toLowerCase() + "..."} />
         </InputBox>
       </InputContainer>
     </>
